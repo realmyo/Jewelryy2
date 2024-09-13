@@ -1,0 +1,323 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jewelry</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f5f5 0%, #e1e1e1 100%);
+      display: flex;
+      flex-direction: column;
+    }
+    nav {
+      width: 100%;
+      background-color: #e6dfa1;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-sizing: border-box;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+    .logo img {
+      height: 60px;
+      width: auto;
+      transition: transform 0.3s ease;
+    }
+    .logo img:hover {
+      transform: scale(1.5);
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+      gap: 15px;
+      flex-grow: 1;
+      justify-content: center;
+    }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover {
+      color: #ff4081;
+    }
+    .language-selector {
+      padding: 8px 12px;
+      background-color: #fff;
+      border: 1px solid #e6dfa1;
+      border-radius: 25px;
+      color: #333;
+      cursor: pointer;
+      font-size: 14px;
+      outline: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .language-selector:hover {
+      background-color: #ff4081;
+      color: #fff;
+      border-color: #ff4081;
+    }
+    .main-content {
+      text-align: center;
+      margin-top: 90px;
+      padding: 20px;
+    }
+    .main-content h1 {
+      font-size: 2rem;
+      color: #5a5a5a;
+      margin-bottom: 20px;
+    }
+    .products {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      width: 100%;
+      height: 60vh;
+      overflow: hidden;
+    }
+    .slideshow {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .slideshow img {
+      height: 100%;
+      width: auto;
+      object-fit: cover;
+    }
+    .active {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .text-overlay {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #fff;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      border-radius: 8px;
+      width: 80%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transition: background 0.3s ease;
+    }
+    .text-overlay h2 {
+      font-size: 1.5rem;
+      margin: 0;
+    }
+    .text-overlay p {
+      font-size: 1rem;
+      margin: 5px 0 0;
+    }
+    .text-overlay:hover {
+      background: rgba(0, 0, 0, 0.7);
+    }
+    .dots {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #fff;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .dot.active {
+      background: #ff4081;
+    }
+    @media (max-width: 768px) {
+      .nav-links {
+        gap: 10px;
+        font-size: 14px;
+      }
+      .logo img {
+        height: 50px;
+      }
+    }
+    @media (max-width: 480px) {
+      .nav-links {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .logo img {
+        height: 40px;
+      }
+      .products {
+        height: 40vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">
+      <img src="images/saqareli.png" alt="Logo">
+    </div>
+    <ul class="nav-links">
+      <li><a href="#" id="nav-products">Products</a></li>
+      <li><a href="#" id="nav-contact">Contact Us</a></li>
+      <li><a href="#" id="nav-about">About Us</a></li>
+      <li><a href="#" id="nav-faq">FAQ</a></li>
+    </ul>
+    <select class="language-selector" id="language-selector">
+      <option value="en">English</option>
+      <option value="ka">ქართული</option>
+      <option value="ru">Русский</option>
+    </select>
+  </nav>
+
+  <div class="main-content">
+    <h1 id="main-heading">Welcome to Our Jewelry Store</h1>
+  </div>
+
+  <div class="products">
+    <!-- Slideshow images with text overlay -->
+    <div class="slideshow active">
+      <img src="images/lamazi.png" alt="Product 1">
+      <div class="text-overlay">
+        <h2>Elegant Ring</h2>
+        <p>Handcrafted with exquisite detail.</p>
+      </div>
+    </div>
+    <div class="slideshow">
+      <img src="images/gorgeous.png" alt="Product 2">
+      <div class="text-overlay">
+        <h2>Gorgeous Ring</h2>
+        <p>A timeless piece for any occasion.</p>
+      </div>
+    </div>
+    <div class="slideshow">
+      <img src="images/bracelet.png" alt="Product 3">
+      <div class="text-overlay">
+        <h2>Beautiful Bracelet</h2>
+        <p>Elegance wrapped around your wrist.</p>
+      </div>
+    </div>
+    <!-- Dots for navigation -->
+    <div class="dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+
+  <script>
+    // Language data object
+    const translations = {
+      en: {
+        navProducts: 'Products',
+        navContact: 'Contact Us',
+        navAbout: 'About Us',
+        navFAQ: 'FAQ',
+        mainHeading: 'Welcome to Our Jewelry Store',
+      },
+      ka: {
+        navProducts: 'პროდუქცია',
+        navContact: 'დაგვიკავშირდით',
+        navAbout: 'ჩვენ შესახებ',
+        navFAQ: 'ხშირად დასმული კითხვები',
+        mainHeading: 'მოგესალმებით ჩვენს საიუველირო მაღაზიაში',
+      },
+      ru: {
+        navProducts: 'Товары',
+        navContact: 'Связаться с нами',
+        navAbout: 'О нас',
+        navFAQ: 'Часто задаваемые вопросы',
+        mainHeading: 'Добро пожаловать в наш ювелирный магазин',
+      }
+    };
+  
+    // Function to switch language
+    const switchLanguage = (lang) => {
+      document.getElementById('nav-products').textContent = translations[lang].navProducts;
+      document.getElementById('nav-contact').textContent = translations[lang].navContact;
+      document.getElementById('nav-about').textContent = translations[lang].navAbout;
+      document.getElementById('nav-faq').textContent = translations[lang].navFAQ;
+      document.getElementById('main-heading').textContent = translations[lang].mainHeading;
+    };
+  
+    // Event listener for language selector
+    document.getElementById('language-selector').addEventListener('change', (e) => {
+      switchLanguage(e.target.value);
+    });
+  
+    // Default language is English
+    switchLanguage('en');
+  
+    // Slideshow function
+    let currentIndex = 0;
+    const slides = document.querySelectorAll('.slideshow');
+    const dots = document.querySelectorAll('.dot');
+  
+    // Function to show a specific slide
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        if (i === index) {
+          slide.classList.add('active');
+        }
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.remove('active');
+        if (i === index) {
+          dot.classList.add('active');
+        }
+      });
+    }
+  
+    // Function to go to the next slide
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % slides.length;
+      showSlide(currentIndex);
+    }
+  
+    // Initialize the slideshow
+    function initializeSlideshow() {
+      showSlide(currentIndex);
+  
+      // Change slide every 5 seconds
+      let intervalId = setInterval(nextSlide, 5000);
+  
+      // Event listener for dots
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          clearInterval(intervalId);
+          currentIndex = index;
+          showSlide(currentIndex);
+          intervalId = setInterval(nextSlide, 5000);
+        });
+      });
+    }
+  
+    // Run the initialization function
+    initializeSlideshow();
+  </script>  
+</body>
+</html>
