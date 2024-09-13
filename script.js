@@ -31,18 +31,17 @@ document.addEventListener('DOMContentLoaded', () => {
       showSlide(currentIndex);
     }
   
-    // Initialize the slideshow
+    // slideshow
     showSlide(currentIndex);
   
-    // Automatically change slides every 5 seconds
+    // changes slides
     const slideInterval = setInterval(nextSlide, 5000);
   
-    // Add event listeners to indicators for manual navigation
     indicators.forEach((indicator, index) => {
       indicator.addEventListener('click', () => {
-        clearInterval(slideInterval); // Stop automatic sliding when manually navigating
+        clearInterval(slideInterval); // stop
         goToSlide(index);
-        setInterval(nextSlide, 5000); // Restart automatic sliding
+        setInterval(nextSlide, 5000); // sliding
       });
     });
   });
